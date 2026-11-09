@@ -61,7 +61,7 @@ This document contains targeted, scenario-based questions and high-impact answer
 
 ---
 
-## 5. How to Design and Build an End-to-End Data Pipeline on GCP
+## 5. How to Design and Implement an End-to-End Data Pipeline on GCP
 
 ### Question:
 *"Can you walk me through the complete lifecycle of designing, building, and deploying an end-to-end data pipeline on Google Cloud Platform?"*
