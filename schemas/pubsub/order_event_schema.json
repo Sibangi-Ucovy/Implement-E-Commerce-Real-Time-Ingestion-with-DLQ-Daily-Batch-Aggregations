@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrderEvent",
+  "description": "Standard schema contract for incoming order events over Cloud Pub/Sub",
+  "type": "object",
+  "properties": {
+    "order_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier of order"
+    },
+    "customer_id": {
+      "type": "string",
+      "description": "Customer identifier"
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0.0,
+      "description": "Total purchase cost"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item_id": { "type": "string" },
+          "qty": { "type": "integer", "minimum": 1 },
+          "price": { "type": "number", "minimum": 0.0 }
+        },
+        "required": ["item_id", "qty", "price"]
+      }
+    },
+    "order_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PENDING", "COMPLETED", "CANCELLED", "REFUNDED"]
+    }
+  },
+  "required": ["order_id", "customer_id", "amount", "order_timestamp", "status"]
+}

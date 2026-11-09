@@ -1,0 +1,26 @@
+{
+  "displayName": "Dataflow Streaming Pipeline High System Lag",
+  "documentation": {
+    "content": "Dataflow system lag has exceeded 300 seconds. Check worker autoscaling, Pub/Sub quota, or possible worker OOMs.",
+    "mimeType": "text/markdown"
+  },
+  "conditions": [
+    {
+      "displayName": "System Lag > 300s",
+      "conditionThreshold": {
+        "filter": "resource.type = \"dataflow_job\" AND metric.type = \"dataflow.googleapis.com/job/system_lag\"",
+        "comparison": "COMPARISON_GT",
+        "thresholdValue": 300,
+        "duration": "180s",
+        "aggregations": [
+          {
+            "alignmentPeriod": "60s",
+            "perSeriesAligner": "ALIGN_MAX"
+          }
+        ]
+      }
+    }
+  ],
+  "combiner": "OR",
+  "enabled": true
+}
